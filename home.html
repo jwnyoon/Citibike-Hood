@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Styled markers from CSV data</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
+<style>
+  body { margin:0; padding:0; }
+  #title{
+  	background-color:white;
+  	font-family:Gill sans;
+
+  	color:black;
+  	font-size:17px;
+  	width:100%;
+  	height:40px;
+  	position:absolute;
+  	margin-top:15px;
+  	margin-left:15px;
+  }
+  #map { position:absolute; top:40px; bottom:0; width:100%; }
+</style>
+</head>
+<body>
+	<script src='//api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.js'></script>
+    <link href='//api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.css' rel='stylesheet'>
+    <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
+    <link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet'>
+    <link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet'>
+	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+<div id='title'>
+CitiBike Stations as Communities - Aug. 2014</div>
+<div id='map'></div>
+
+<script>
+L.mapbox.accessToken = 'pk.eyJ1Ijoiaml3b255b29uIiwiYSI6IklscjNONVkifQ.UR5XyoM6aKmj2DqVh4xWRw';
+var map = L.mapbox.map('map', 'jiwonyoon.knio76a8')
+    .setView([40.739, -73.986], 13);
+
+// omnivore will AJAX-request this file behind the scenes and parse it:
+// note that there are considerations:
+// - The CSV file must contain latitude and longitude values, in column
+//   named roughly latitude and longitude
+// - The file must either be on the same domain as the page that requests it,
+//   or both the server it is requested from and the user's browser must
+//   support CORS.
+
+// The omnivore functions take three arguments:
+//
+// - a URL of the file to fetch
+// - options to the parser
+// - a custom layer
+//
+// And they return the custom layer, which is by default an L.geoJson layer.
+//
+// The second two arguments are each optional. In this case we're supplying
+// no arguments to the parser (null), but supplying a custom layer:
+// an instance of L.mapbox.featureLayer
+// This means that rows with simplestyle properties will be styled as they
+// would be in GeoJSON and elsewhere.
+// function eachLayer(layer){
+// 	var feature = layer.toGeoJSON();
+// 	if(feature.properties && feature.properties.data.edge){
+// 		layer.bindPopup("Trips - "+ feature.properties.data.edge);
+// 		console.log(feature.properties.data.edge[1]);
+// 	}
+
+// }
+
+
+// var points = omnivore.csv('data.csv', {
+// 	icon: L.mapbox.marker.icon({
+// 		'marker-symbol': 'airport'
+// 		// 'marker-color': '000000'
+// 	})
+// }).on('ready', function(){
+// 	map.fitBounds(points.getBounds());
+// 	var markers = L.markerClusterGroup({
+// 		showCoverageOnHover: false,
+// 		maxClusterRadius: 50
+// 	});
+// 	markers.addLayer(points);
+// 	map.addLayer(markers);
+// 	points.eachLayer(eachLayer);
+// });
+
+var color = [];
+function rndColor(){
+	color.push('#'+Math.floor(Math.random()*(1<<24)).toString(16));
+}
+// var size = [];
+// function markerSize(){
+
+// }
+
+// L.mapbox.marker.icon
+
+
+omnivore.csv('data.csv')
+	.on('ready',function(layer){
+		// rndColor();
+		for(var i=0; i<26; i++){
+		this.eachLayer(function(marker){
+		
+			rndColor();
+			if(marker.toGeoJSON().properties.group==i){
+				marker.setIcon(L.mapbox.marker.icon({
+					'marker-color': color[i],
+					'marker-size': 'small',
+					'marker-symbol': 'circle'
+				}));
+			}
+		
+			   marker.bindPopup(marker.toGeoJSON().properties.name+'</br>'+ marker.toGeoJSON().properties.edge+' trips');
+		});
+	}
+
+	})
+	.addTo(map);
+
+
+</script>
+</body>
+</html>
