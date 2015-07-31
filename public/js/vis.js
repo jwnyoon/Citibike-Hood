@@ -23,7 +23,7 @@ var hoodLayer = L.mapbox.featureLayer();
 var DockLayer = L.layerGroup();
 
 
-var URL ='http://www.citibikenyc.com/stations/json/';
+var URL ='//www.citibikenyc.com/stations/json/';
 
 
 
