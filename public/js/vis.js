@@ -44,7 +44,7 @@ function rndColor(){
 // L.mapbox.marker.icon
 
 
-omnivore.csv('../public/data.csv')
+omnivore.csv('data.csv')
   .on('ready',function(layer){
     // rndColor();
     map.removeLayer(DockLayer);
