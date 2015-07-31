@@ -75,7 +75,7 @@ hoodLayer.addTo(map);
 
 function callrealtime(){
 
-  var URL ='http://www.citibikenyc.com/stations/json/';
+  var URL ='//www.citibikenyc.com/stations/json/';
 
 d3.json(URL, function(err, data) {
       console.log(data.executionTime);
