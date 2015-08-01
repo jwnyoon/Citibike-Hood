@@ -57,24 +57,36 @@ omnivore.csv('data.csv')
         marker.setIcon(L.mapbox.marker.icon({
           'marker-color': color[i],
           'marker-size': 'small',
-
-          // 'marker-opacity' : 0.2
-          // 'marker-symbol': 'circle'
         }));
       }
+
     
-         marker.bindPopup(marker.toGeoJSON().properties.name+'</br>'+ marker.toGeoJSON().properties.edge+' trips');
+         marker.bindPopup(marker.toGeoJSON().properties.name+'</br>'+ 'Number of Trips: '+marker.toGeoJSON().properties.edge);
     });
   }
 
   })
   .addTo(hoodLayer);
 hoodLayer.addTo(map);
-// });
+
+
 }
+
+
+
 
 function callrealtime(){
 
+
+
+
+
+
+
+
+
+
+  // var URL ='//www.citibikenyc.com/stations/json/';
   var URL ='//www.citibikenyc.com/stations/json/';
 
 d3.json(URL, function(err, data) {
@@ -82,6 +94,27 @@ d3.json(URL, function(err, data) {
         $('.des2').html(data.executionTime);
       map.removeLayer(hoodLayer);  
     addCircle(data);
+
+// d3.jsonp(URL, function(data) {
+//       console.log(data.executionTime);
+//         $('.des2').html(data.executionTime);
+//       map.removeLayer(hoodLayer);  
+//     addCircle(data);
+
+
+ 
+// $.ajax({
+//     url: URL,
+//     type: 'GET',
+//     crossDomain: true,
+//     dataType: 'jsonp',
+//      jsonpCallback: "jsonpcallback",
+//     success: function(data) {
+//         console.log(data.executionTime);
+//         $('.des2').html(data.executionTime);
+//         map.removeLayer(hoodLayer);  
+//        addCircle(data); 
+//     }    
 
 });
 
@@ -109,7 +142,7 @@ d3.json(URL, function(err, data) {
         fillOpacity: 0.7,
         weight: 0.5,
         color: '#fff'
-      }).bindPopup(station.stationName + '</br>'+
+      }).bindPopup(station.stationName + '</br>'+ 'Number of Bikes: '+
         bike)
         .addTo(DockLayer);
         DockLayer.addTo(map);
