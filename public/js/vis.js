@@ -92,7 +92,25 @@ hoodLayer.on('click', function(e) {
     // e.layer.feature.properties['marker-color'] = '#ff8888';
     $('.Group').html('Group '+e.layer.feature.properties.group);
     $('.GroupDes').html(e.layer.feature.properties.groupdes);
+
+    // For each filter link, get the 'data-filter' attribute value.
+    var filter = e.layer.feature.properties.group;
+    hoodLayer.setFilter(function(f) {
+        // If the data-filter attribute is set to "all", return
+        // all (true). Otherwise, filter on markers that have
+        // a value set to true based on the filter name.
+        return (filter === 'all') ? true : f.properties.filter === true;
+    });
+    return false;
 });
+
+
+
+
+
+
+//     }
+// });
 
 
 

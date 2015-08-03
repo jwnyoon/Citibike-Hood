@@ -110,14 +110,14 @@ h1 {
 .GroupDes {
 	font-family: 'Gill Sans', sans-serif;
 		text-transform:uppercase;
-	width: 20%;
-	padding-right: 10px;
+	width: 17%;
+	padding-right: 40px;
 	padding-left: 20px;
 	right: 3px;
 
 	position: absolute;
 	color: white;
-	bottom: 113px;
+	bottom: 100px;
 	letter-spacing: 1.2px;
 	padding-bottom: 20px;
 	font-size: 10px;
