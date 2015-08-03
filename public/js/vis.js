@@ -61,7 +61,7 @@ omnivore.csv('data.csv')
       }
 
     
-         marker.bindPopup(marker.toGeoJSON().properties.name+'</br>'+ 'Number of Trips: '+marker.toGeoJSON().properties.edge);
+         marker.bindPopup(marker.toGeoJSON().properties.name);
     });
   }
 
@@ -69,8 +69,30 @@ omnivore.csv('data.csv')
   .addTo(hoodLayer);
 hoodLayer.addTo(map);
 
+// hoodLayer.on('click', function(e) {
+//     // e.layer.feature.properties['old-color'] = e.layer.feature.properties['marker-color'];
+//     // e.layer.feature.properties['marker-color'] = '#ff8888';
+//     // myLayer.setGeoJSON(geoJson);
+//     $('.Group').html('hi');
+// });
+
 
 }
+
+
+
+hoodLayer.on('click', function(e) {
+  console.log(e.layer.feature.properties.group);
+
+    // e.layer.feature.properties['old-color'] = e.layer.feature.properties['marker-color'];
+    // e.layer.feature.properties['marker-color'] = '#ff8888';
+    // myLayer.setGeoJSON(geoJson);
+    console.log("yes");
+    // e.layer.feature.properties['old-color'] = e.layer.feature.properties['marker-color'];
+    // e.layer.feature.properties['marker-color'] = '#ff8888';
+    $('.Group').html('Group '+e.layer.feature.properties.group);
+    $('.GroupDes').html(e.layer.feature.properties.groupdes);
+});
 
 
 

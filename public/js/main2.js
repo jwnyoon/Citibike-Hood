@@ -4,6 +4,8 @@ $('.community').click(function() {
 	$('.des').hide();
  	$('.des2').hide();
 	$('.des1').show();
+	$('.Group').show();
+		$('.GroupDes').show();
 	$('.community').css('background-color', 'rgba(255,85,85,0.5)');
 	$('.realtime').css('background-color', 'rgba(255,255,255,0.5)');
 
@@ -18,6 +20,8 @@ $('.realtime').click(function() {
 	$('.des1').hide();
 	$('.des').show();
 		$('.des2').show();
+		$('.Group').hide();
+		$('.GroupDes').hide();
 	$('.community').css('background-color', 'rgba(255,255,255,0.5)');
 	$('.realtime').css('background-color', 'rgba(255,85,85,0.5)');
 

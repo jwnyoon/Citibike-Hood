@@ -86,6 +86,46 @@ h1 {
 }
 
 
+
+.Group {
+	font-family: 'Gill Sans', sans-serif;
+/*		text-transform:uppercase;*/
+		text-transform:uppercase;
+	width: 10%;
+	padding-right: 60px;
+	padding-left: 20px;
+	right: 80px;
+
+	position: absolute;
+	color: white;
+	bottom: 133px;
+	letter-spacing: 1.2px;
+	padding-bottom: 20px;
+	font-size: 14px;
+	line-height: 160%;
+	font-weight: lighter;
+}
+
+
+.GroupDes {
+	font-family: 'Gill Sans', sans-serif;
+		text-transform:uppercase;
+	width: 20%;
+	padding-right: 10px;
+	padding-left: 20px;
+	right: 3px;
+
+	position: absolute;
+	color: white;
+	bottom: 113px;
+	letter-spacing: 1.2px;
+	padding-bottom: 20px;
+	font-size: 10px;
+	line-height: 160%;
+	font-weight: lighter;
+}
+
+
 .bttn {
 	font-family: 'Gill Sans', sans-serif;
 	letter-spacing: 1px;
