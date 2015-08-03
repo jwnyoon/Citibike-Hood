@@ -4,8 +4,7 @@
  */
 
 var express = require('express')
-  , cors = require('cors')
-  , app = express();
+
 
 var http = require('http');
 var path = require('path');
@@ -13,11 +12,11 @@ var path = require('path');
 
 
 // the ExpressJS App
-app.options('*',cors());
-  app.use(cors());
+// app.options('*',cors());
+//   app.use(cors());
 
 
-
+var app = express();
 
 // configuration of port, templates (/views), static files (/public)
 // and other expressjs settings for the web server.
