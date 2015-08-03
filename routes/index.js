@@ -12,4 +12,9 @@ var moment = require("moment"); // date manipulation library
 exports.index = function(req, res) {
 	console.log('main page requested');
 	res.render('index.html');
+  
 }
+
+
+
+

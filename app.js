@@ -3,14 +3,21 @@
  * Module dependencies.
  */
 
-var express = require('express');
+var express = require('express')
+  , cors = require('cors')
+  , app = express();
+
 var http = require('http');
 var path = require('path');
 // var mongoose = require('mongoose');
 
 
 // the ExpressJS App
-var app = express();
+app.options('*',cors());
+  app.use(cors());
+
+
+
 
 // configuration of port, templates (/views), static files (/public)
 // and other expressjs settings for the web server.
@@ -37,13 +44,16 @@ app.configure(function(){
   
   // make sesssion information available to all templates
   app.use(function(req, res, next){
+
     res.locals.sessionUserName = req.session.userName;
     res.locals.sessionUserColor = req.session.userColor;
     next();
   });
 
+
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
+
 
   // database - skipping until week 5
   // app.db = mongoose.connect(process.env.MONGOLAB_URI);
@@ -68,11 +78,25 @@ COOKIEHASH in your .env file (also share with heroku)
 //   })
 // );
 
+
+ 
+
+
+
+
 // ROUTES
 
 var routes = require('./routes/index.js');
 
 app.get('/', routes.index);
+
+
+
+// app.options('/', function(req, res){
+//   console.log("writing headers only");
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.end('');
+// });
 
 // //new astronaut routes
 // app.get('/create',routes.astroForm); //display form

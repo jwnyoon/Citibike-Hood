@@ -23,7 +23,7 @@ var hoodLayer = L.mapbox.featureLayer();
 var DockLayer = L.layerGroup();
 
 
-var URL ='//www.citibikenyc.com/stations/json/';
+// var URL ='http://cors.io/?u=https://citibikenyc.com/stations/json/';
 
 
 
@@ -36,12 +36,6 @@ function rndColor(){
   // color.push('#'+Math.floor(Math.random()*(1<<24)).toString(16));
   color.push('#'+('00000'+(Math.random()*16777216<<0).toString(16)).substr(-6));
 }
-// var size = [];
-// function markerSize(){
-
-// }
-
-// L.mapbox.marker.icon
 
 
 omnivore.csv('data.csv')
@@ -52,6 +46,7 @@ omnivore.csv('data.csv')
     for(var i=0; i<26; i++){
     this.eachLayer(function(marker){
           rndColor();
+
   
       if(marker.toGeoJSON().properties.group==i){
         marker.setIcon(L.mapbox.marker.icon({
@@ -68,13 +63,6 @@ omnivore.csv('data.csv')
   })
   .addTo(hoodLayer);
 hoodLayer.addTo(map);
-
-// hoodLayer.on('click', function(e) {
-//     // e.layer.feature.properties['old-color'] = e.layer.feature.properties['marker-color'];
-//     // e.layer.feature.properties['marker-color'] = '#ff8888';
-//     // myLayer.setGeoJSON(geoJson);
-//     $('.Group').html('hi');
-// });
 
 
 }
@@ -94,23 +82,33 @@ hoodLayer.on('click', function(e) {
     $('.GroupDes').html(e.layer.feature.properties.groupdes);
 
     // For each filter link, get the 'data-filter' attribute value.
-    var filter = e.layer.feature.properties.group;
-    hoodLayer.setFilter(function(f) {
-        // If the data-filter attribute is set to "all", return
-        // all (true). Otherwise, filter on markers that have
-        // a value set to true based on the filter name.
-        return (filter === 'all') ? true : f.properties.filter === true;
-    });
-    return false;
-});
-
-
-
-
-
-
-//     }
+//     var filter = e.layer.feature.properties.group;
+//     hoodLayer.setFilter(function(f) {
+//         // If the data-filter attribute is set to "all", return
+//         // all (true). Otherwise, filter on markers that have
+//         // a value set to true based on the filter name.
+//         return (filter === 'all') ? true : f.properties.filter === true;
+//     });
+//     return false;
 // });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    });
 
 
 
@@ -118,16 +116,10 @@ hoodLayer.on('click', function(e) {
 function callrealtime(){
 
 
-
-
-
-
-
-
-
-
+  // var URL ='http://www.citibikenyc.com/stations/json/';
   // var URL ='//www.citibikenyc.com/stations/json/';
-  var URL ='//www.citibikenyc.com/stations/json/';
+  var URL ='http://cors.io/?u=https://citibikenyc.com/stations/json/';
+
 
 d3.json(URL, function(err, data) {
       console.log(data.executionTime);
