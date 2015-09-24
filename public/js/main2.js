@@ -29,10 +29,3 @@ $('.realtime').click(function() {
 
 });
 
-// $('.factor').click(function() {
-
-// 	$('.cuisine').css('border-color', 'rgba(255,255,255,0.5)');
-// 	$('.foodtype').css('border-color', 'rgba(255,255,255,0.5)');
-// 	$('.factor').css('border-color', 'rgba(72,194,244,1)');
-// });
-
